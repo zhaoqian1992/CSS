@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .btn {
+            padding: 6px 16px;
+            border: 1px solid #446d88;
+            background: #58a linear-gradient(#77a0bb,#58a);
+            border-radius: 4px;
+            box-shadow: 0 1px 5px gray;
+            color: white;
+            text-shadow: 0 -1px 1px #335166;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        .btn-v1 {
+            padding: 6px 16px;
+            border: 1px solid #446d88;
+            background: #58a linear-gradient(#77a0bb,#58a);
+            border-radius: 4px;
+            box-shadow: 0 1px 5px gray;
+            color: white;
+            text-shadow: 0 -1px 1px #335166;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .btn-v2 {
+            padding: 6px 16px;
+            border: 1px solid #446d88;
+            background: #58a linear-gradient(#77a0bb,#58a);
+            border-radius: 4px;
+            box-shadow: 0 1px 5px gray;
+            color: white;
+            text-shadow: 0 -1px 1px #335166;
+            font-size: 125%; /*假设父级的字号是16px*/
+            line-height: 1.5;
+        }
+        .btn-v3 {
+            padding: .3em .8em;
+            border: 1px solid #446d88;
+            background: #58a linear-gradient(#77a0bb,#58a);
+            border-radius: .2em;
+            box-shadow: 0 .05em .25em gray;
+            color: white;
+            text-shadow: 0 -.05em .05em #335166;
+            font-size: 125%;
+            line-height: 1.5;
+        }
+        .btn-v4 {
+            padding: .3em .8em;
+            border: 1px solid rgba(0,0,0,.1);
+            background: transparent; /*更简单*/
+            /*background: #58a linear-gradient(hsla(0,0%,100%,.2),transparent);            */
+            /*这个设置的是
+            background-color和background-image
+            rgba(255,255,255,.2)和hsla等价*/
+            border-radius: .2em;
+            box-shadow: 0 .05em .25em rgba(0,0,0,.5);
+            color: white;
+            text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+            font-size: 125%;
+            line-height: 1.5;
+        }
+        .btn-v { /*改变按钮的颜色*/
+            background-color: #c00;
+        }
+    </style>
+</head>
+<body style="font-size:16px;">
+    <span class="btn btn-v1 btn-v2 btn-v3 btn-v4 btn-v">Yes!</span>
+    <pre>
+        CSS编码技巧：
+        代码可维护行的最大要素是尽量减少改动时要编辑的地方。
+        .btn在代码可维护性方面存在一些问题，依次修复
+        1、 如果我们决定改变字号，就得同时调整行高，因为这两个属性都写成了绝对值。更麻烦的是，行高并没有反映出它跟字号的关系，因此我们还得做些算数，算出字号改变之后的行高该是多少，
+        当某些值相互依赖是，应该把它们的相互关系用代码表达出来.
+        eg: .btn-v1
+        2、字号不定为绝对长度值。虽然绝对值很容易掌控，但每当你想要修改他们的时候，它们都会回头反咬你一口。比如，如果我们决定把父级的字号加大，就不得不修改每一处使用绝对值作为字体尺寸的样式，如果该用百分比或em单位就好多了.eg:.btn-v2
+        3、现在如果我们改变父级的字号，按钮的尺寸就会随之变化。
+            但是，看起来很不协调。因为所有其他效果都是为一个小按钮设计的，并没有跟着缩放。如果我们把这些长度值都改成em单位，那这些效果的值就都变成可缩放的了，而且是依赖字号进行缩放。如此，我们捷克语在一处控制按钮的所有尺寸样式了。
+            eg: .btn-v3
+        4、改变按钮的颜色
+    </pre>
+    
+</body>
+</html>
