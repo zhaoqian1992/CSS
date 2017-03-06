@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .a{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            float: left;
+        }
+        .b {
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+        }
+        .clearfix {*zoom: 1;}
+        .clearfix:after {
+            content: '';
+            display: block;
+            height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="a"></div>
+    <p>xixixixi1111111111111111111</p>
+    <div class="b"></div>
+    <pre>
+        http://www.iyunlu.com/demo/enclosing-float-and-clearing-float/index.html
+        1、清除浮动
+        clear: both|left|right|none;
+        2、闭合浮动
+         i>添加额外的标签；<div style="clear:both"></div>
+         ii>使用br标签和其自身的html属性
+            <br clear="all">
+         iii>给父元素设置overflow:hidden|auto;
+         iiii>给父元素设置 display:table;
+         iiiii>给父元素也设置浮动
+         使用after伪元素，ie6-7设置zoom:1
+
+        浮动元素，不会影响到块级框的布局而只会影响到内联框的排列。
+    </pre>
+</body>
+</html>

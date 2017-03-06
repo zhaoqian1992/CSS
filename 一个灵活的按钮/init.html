@@ -67,10 +67,139 @@
         .btn-v { /*改变按钮的颜色*/
             background-color: #c00;
         }
+        .more{
+            border-width: 10px;
+            border-left: 0;
+        }
+        hr{
+            height: .2em;
+            background: currentColor;  /*水平分割线自动与文本颜色保持一致*/
+        }
+        .callout{ /*一个正方形，absolute没有宽高，padding填充；
+                    relative即便不定宽高，也是有宽的auto，高没有0，padding一撑，就是一长条
+                */
+            /*content: '';*/
+            position: absolute;
+            top: -.4em; left: 1em;
+            padding: .35em;
+            background: inherit;
+            border: inherit;
+            /*border-right: 0;*/
+            /*border-bottom: 0;*/
+            transform: rotate(45deg);
+        }
+        .border { /*这种边框的颜色只是变浅，而不是半透明*/
+            border: 10px solid hsla(0,0%,100%,.5);
+            background: red;
+        }
+        .border-v1 { /*半透明边框*/
+            border: 10px solid rgba(255,255,255,.5);
+            background: red;
+            background-clip: padding-box;   
+
+            /**/
+        }
+        .border-v2 {
+            background: yellowgreen;
+            border: 10px solid #655;
+            outline: 5px dashed white;
+            outline-offset: -10px;
+        }
+        .something {
+            background: #655;
+            padding: .8em;
+
+        }
+        .something > div {
+            background: tan;
+            border-radius: .8em;
+            padding: 1em;
+        }
+        .somemore {
+            background: tan;
+            border-radius: .8em;
+            padding: 1em;
+            box-shadow: 0 0 0 .6em #655;
+            outline: .6em solid #655;
+        }
+        .linear {
+            height: 42px;
+            background: linear-gradient(45deg, #fb3 25%,#58a 0,#58a 50%,#fb3 0,#fb3 75%,#58a 0);
+            background-size: 42px 42px;
+        }
+        .repeat-linear{
+            height: 42px;
+            background: repeating-linear-gradient(45deg,
+#fb3, #fb3 15px, #58a 0, #58a 30px);
+        }
+        .repeat-linear-v1 {
+            background: #58a;
+            background-image: repeating-linear-gradient(30deg,hsla(0,0%,100%,.1), hsla(0,0%,100%,.1) 15px, transparent 0, transparent 30px);
+        }
+        .linear-grid {
+            height: 40px;
+            background: white;            
+            background-image: linear-gradient(90deg,
+            rgba(200,0,0,.5) 50%, transparent 0),
+            linear-gradient(
+            rgba(200,0,0,.5) 50%, transparent 0);
+            background-size: 30px 30px;
+        }
+        .linear-grid-other {
+            background: #58a;
+            background-image: 
+                linear-gradient(white 1px, transparent 0),
+                linear-gradient(90deg, white 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .linear-grid-more {
+            background: #58a;
+            background-image: 
+                linear-gradient(white 2px, transparent 0),
+                linear-gradient(90deg, white 2px, transparent 0),
+                linear-gradient(hsla(0,0%,100%,.3) 1px, transparent 0),
+                linear-gradient(90deg, hsla(0,0%,100%,.3) 1px, transparent 0);
+            background-size: 75px 75px, 75px 75px,
+                            15px 15px, 15px 15px;
+        }
+        .point {
+            height: 30px;
+            background: #655;
+            background-image: radial-gradient(tan 30%, transparent 0);
+            background-size: 30px 30px;
+        }
+        .point-v1 {
+            background: #655;
+            background-image: radial-gradient(tan 30%, transparent 0),
+                radial-gradient(tan 30%, transparent 0);
+            background-position: 0 0, 15px 15px;
+        }
     </style>
 </head>
 <body style="font-size:16px;">
     <span class="btn btn-v1 btn-v2 btn-v3 btn-v4 btn-v">Yes!</span>
+    <div class="callout"></div>
+    <div class="border-v2">hahah</div>
+    <hr>
+    <div class="something">
+        <div>xixixi</div>
+    </div>
+    <hr>
+    <div class="somemore">
+        hahaha
+    </div>
+    <div style="margin-top:20px;" class="linear">        
+    </div>
+    <div style="margin-top:20px;" class="repeat-linear repeat-linear-v1"> 
+    </div>
+    
+    <!-- 网格  -->
+    <div class="linear-grid linear-grid-other "></div>
+    <!-- 多个网格混用  -->
+    <div class="linear-grid linear-grid-more "></div>
+
+    <!-- 波点 -->
+    <div class="point"></div>
     <pre>
         CSS编码技巧：
         代码可维护行的最大要素是尽量减少改动时要编辑的地方。
@@ -83,6 +212,34 @@
             但是，看起来很不协调。因为所有其他效果都是为一个小按钮设计的，并没有跟着缩放。如果我们把这些长度值都改成em单位，那这些效果的值就都变成可缩放的了，而且是依赖字号进行缩放。如此，我们捷克语在一处控制按钮的所有尺寸样式了。
             eg: .btn-v3
         4、改变按钮的颜色
+        5、更多的技巧
+            eg：.more,hr
+            继承：font,color,background
+            inherit关键字，可以用在任何css属性中，而且它总是绑定到父元素的计算值（对伪元素来说，则会取生成该伪元素的宿主元素）
+        6、background简写属性中指定background-size时，需要同时提供一个background-position的值（哪怕它的值是其初始值也需要写出来），同时还要使用一个斜杠(/)分隔。这通常是为了消除歧义。
+            background-clip: border-box;从border区域向外裁剪背景
+                             padding-box; 从padding区域向外裁剪背景
+                             content-box;从content区域向外裁剪背景
+                             http://dabblet.com/gist/012289cc14106a1bd7a5
+        7、多重边框 
+            多重实线边框box-shadow: x偏移 y偏移 0模糊值 0扩张半径， 支持逗号分隔语法，可以创建任意数量的投影
+        8、灵活的背景定位
+            background-position: right 20px bottom 10px; 背景图片定位,是以padding box为准的，这样边框才不会遮住背景图片，
+            background-origin来改变这种行为
+            backgroud-origin:padding-box/content-box; content-box是以内容区的边缘作为基准
+
+            background-position支持逗号分隔语法
+            background-image支持逗号分隔语法
+            background-position-x;background-position-y
+
+            box-shadow会跟着元素的形状走
+            目前outline不会
+
+            background-size调整背景图像的尺寸。页支持逗号分隔语法。渐变是一种由代码生成的图像，我们能像对待其他任何背景图像那样对待它。
+            重复线性渐变repeating-linear-gradient repeating-radial-gradient
+
+            必须要先写background-image，在用background-size规定其大小，否则无效
+
     </pre>
     
 </body>
